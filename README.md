@@ -4,21 +4,21 @@ A simple app to track issues related to software development and help teams mana
 
 ## Task list
 
-[ ] User
+- [ ] User
 
-- [ ] Register
-- [ ] Login
-- [ ] Recover password
-- [ ] Roles
+> - [ ] Register
+> - [ ] Login
+> - [ ] Recover password
+> - [ ] Roles
 
-[ ] Projects
+- [ ] Projects
 
-- [ ] CRUD
-- [ ] Assign members (users)
+> - [ ] CRUD
+> - [ ] Assign members (users)
 
-[ ] Issues
+- [ ] Issues
 
-- [ ] CRUD
-- [ ] User (developer) can take the responsibility over the issue
-- [ ] Comments
-- [ ] Status history
+> - [ ] CRUD
+> - [ ] User (developer) can take the responsibility over the issue
+> - [ ] Comments
+> - [ ] Status history
