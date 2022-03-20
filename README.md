@@ -1,6 +1,6 @@
 # bug-tracker
 
-A simple app to track issues related to software development and help teams manange their projects.
+A simple app to track issues related to software development and help teams manage their projects.
 
 ## Task list
 
