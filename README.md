@@ -9,12 +9,11 @@ A simple app to track issues related to software development and help teams mana
 > - [ ] Register
 > - [ ] Login
 > - [ ] Recover password
-> - [ ] Roles
 
 - [ ] Projects
 
 > - [ ] CRUD
-> - [ ] Assign members (users)
+> - [ ] Assign members (users) and their roles
 
 - [ ] Issues
 
