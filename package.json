@@ -1,0 +1,7 @@
+{
+  "name": "bug-tracker",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
+}
