@@ -1,0 +1,10 @@
+{
+  "name": "@bug-tracker/db",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Vitor Wdson <vitor.wdson2@gmail.com>",
+  "license": "GPL3",
+  "devDependencies": {
+    "prisma": "^3.11.1"
+  }
+}
