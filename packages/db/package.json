@@ -1,10 +1,19 @@
 {
   "name": "@bug-tracker/db",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "author": "Vitor Wdson <vitor.wdson2@gmail.com>",
   "license": "GPL3",
+  "scripts": {
+    "build": "tsc",
+    "migrate:dev": "prisma migrate dev --name",
+    "generate": "prisma generate"
+  },
   "devDependencies": {
     "prisma": "^3.11.1"
+  },
+  "dependencies": {
+    "@prisma/client": "^3.11.1"
   }
 }

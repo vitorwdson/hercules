@@ -9,3 +9,78 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+enum Role {
+  ADMIN
+  MANAGER
+  DEVELOPER
+  TESTER
+  GUEST
+}
+
+enum Status {
+  CONFIRMED
+  IN_PROGRESS
+  FIXED
+  WONTFIX
+  DUPLICATE
+}
+
+model User {
+  id             Int       @id @default(autoincrement())
+  name           String
+  email          String
+  password       String
+  profilePicture String?
+  role           Role      @default(GUEST)
+  lastLogin      DateTime?
+  projects       Project[]
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  issues         Issue[]
+  Comment        Comment[]
+}
+
+model Project {
+  id          Int      @id @default(autoincrement())
+  name        String
+  createdBy   User     @relation(fields: [createdById], references: [id])
+  createdById Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  issues      Issue[]
+}
+
+model Issue {
+  id               Int           @id @default(autoincrement())
+  project          Project       @relation(fields: [projectId], references: [id])
+  projectId        Int
+  title            String
+  description      String
+  stepsToReproduce String
+  statusHistory    IssueStatus[]
+  comments         Comment[]
+  createdBy        User          @relation(fields: [createdById], references: [id])
+  createdById      Int
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+}
+
+model IssueStatus {
+  id      Int    @id @default(autoincrement())
+  status  Status
+  message String
+  issue   Issue  @relation(fields: [issueId], references: [id])
+  issueId Int
+}
+
+model Comment {
+  id          Int      @id @default(autoincrement())
+  text        String
+  issue       Issue    @relation(fields: [issueId], references: [id])
+  issueId     Int
+  createdBy   User     @relation(fields: [createdById], references: [id])
+  createdById Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
