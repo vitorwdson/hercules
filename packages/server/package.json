@@ -4,7 +4,7 @@
   "description": "",
   "author": "Vitor Wdson <vitor.wdson2@gmail.com>",
   "private": true,
-  "license": "GPL3",
+  "license": "GPL-3.0",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
