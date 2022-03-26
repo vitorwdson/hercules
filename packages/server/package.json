@@ -2,9 +2,9 @@
   "name": "@bug-tracker/server",
   "version": "0.0.1",
   "description": "",
-  "author": "",
+  "author": "Vitor Wdson <vitor.wdson2@gmail.com>",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "GPL3",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",

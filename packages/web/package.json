@@ -2,6 +2,8 @@
   "name": "@bug-tracker/web",
   "version": "0.1.0",
   "private": true,
+  "license": "GPL3",
+  "author": "Vitor Wdson <vitor.wdson2@gmail.com>",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
