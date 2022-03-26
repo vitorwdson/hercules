@@ -3,6 +3,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { AppResolver } from './app.resolver';
+import { PrismaService } from '@bug-tracker/db';
 
 @Module({
   imports: [
@@ -17,6 +18,6 @@ import { AppResolver } from './app.resolver';
       },
     }),
   ],
-  providers: [AppResolver],
+  providers: [PrismaService, AppResolver],
 })
 export class AppModule {}
