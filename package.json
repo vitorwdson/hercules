@@ -1,0 +1,8 @@
+{
+  "name": "bug-tracker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:vitorwdson/bug-tracker.git",
+  "author": "Vitor Wdson <vitor.wdson2@gmail.com>",
+  "license": "GPL-3.0-or-later"
+}
