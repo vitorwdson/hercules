@@ -1,3 +1,11 @@
+"use client";
+
+import { api } from "../utils/api";
+
 export default function Page() {
-  return <h1>Hello, Next.js!</h1>;
+  const { data } = api.hello.useQuery({
+    text: "Test",
+  });
+
+  return <h1>{data?.greeting}</h1>;
 }
