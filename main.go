@@ -1,28 +1,12 @@
 package main
 
 import (
-	"html/template"
 	"log"
 	"net/http"
+
+	"github.com/vitorwdson/hercules/templates"
 )
 
-var TemplateFolder = "./templates/"
-
-func getTemplate(templatePath string) (*template.Template, error) {
-    files := []string{
-        "./templates/base.html",
-        "./templates/" + templatePath,
-    }
-
-    log.Println(files)
-
-    tmpl, err := template.ParseFiles(files...)
-    if err != nil {
-        return nil, err
-    }
-
-	return tmpl, nil 
-}
 
 type Test struct {
     Name string
@@ -36,7 +20,7 @@ type ViewData struct {
 
 func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		tmpl, err := getTemplate("index.html")
+        tmpl, err := templates.GetTemplate("views/index.html")
         if err != nil {
             log.Print(err.Error())
             http.Error(w, "Error loading template", 500)
@@ -71,4 +55,8 @@ func main() {
 
 	http.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir("./public"))))
 	http.ListenAndServe(":3000", nil)
+}
+
+func GetTemplate(s string) {
+	panic("unimplemented")
 }
