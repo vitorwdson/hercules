@@ -24,6 +24,16 @@ func getTemplate(templatePath string) (*template.Template, error) {
 	return tmpl, nil 
 }
 
+type Test struct {
+    Name string
+    Bar int
+}
+
+type ViewData struct {
+    Name string
+    TestList []Test
+}
+
 func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		tmpl, err := getTemplate("index.html")
@@ -32,9 +42,27 @@ func main() {
             http.Error(w, "Error loading template", 500)
         }
 
-        err = tmpl.ExecuteTemplate(w, "base", map[string]string{
-			"Name": "test",
-		})
+        err = tmpl.ExecuteTemplate(w, "base", ViewData {
+            Name: "FooBar",
+            TestList: []Test {
+                {
+                    Name: "Test",
+                    Bar: 5,
+                },
+                {
+                    Name: "Bazz",
+                    Bar: 6,
+                },
+                {
+                    Name: "Fizzz",
+                    Bar: 7,
+                },
+                {
+                    Name: "FoooBar",
+                    Bar: 8,
+                },
+            },
+        })
         if err != nil {
             log.Print(err.Error())
             http.Error(w, "Error executing template", 500)

@@ -1,4 +1,7 @@
 {{ define "title" }}Index{{ end }}
 {{ define "main" }}
   <h1>Hello, {{ .Name }}</h1>
+  {{range $Test := .TestList}}
+  <p>{{.Name}} -- {{$Test.Name}}</p>
+  {{end}}
 {{ end }}
