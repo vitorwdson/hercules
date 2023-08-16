@@ -17,5 +17,4 @@ func GetTemplate(includedPaths ...string) (*template.Template, error) {
     }
 
 	return tmpl, nil 
-
 }
