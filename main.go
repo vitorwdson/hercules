@@ -2,9 +2,11 @@ package main
 
 import (
 	"net/http"
+
+	"github.com/vitorwdson/hercules/web"
 )
 
 func main() {
-	http.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir("./public"))))
+	web.SetupRoutes()
 	http.ListenAndServe(":3000", nil)
 }

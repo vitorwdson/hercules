@@ -52,4 +52,9 @@ func SetupRoutes() {
         }
 	})
 
+	http.Handle(
+		"/public/",
+		http.StripPrefix("/public/", http.FileServer(http.Dir("./public"))),
+    )
+
 }
