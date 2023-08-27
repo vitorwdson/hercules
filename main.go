@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"net/http"
+	"os"
 
 	"github.com/joho/godotenv"
 	"github.com/vitorwdson/hercules/db"
@@ -10,15 +11,21 @@ import (
 )
 
 func main() {
-	devFlag := flag.Bool("dev", false, "Use develoment mode")
-    flag.Parse()
+	devMode := flag.Bool("dev", false, "Use develoment mode")
+	runMigrations := flag.Bool("migrate", false, "Applies migrations and exits the program")
+	flag.Parse()
 
-	if *devFlag {
+	if *devMode {
 		godotenv.Load()
 	}
 
-	db := db.GetDB()
-	defer db.Close()
+	dbConnection := db.GetDB()
+	defer dbConnection.Close()
+
+    if *runMigrations {
+        db.RunMigrations()
+        os.Exit(0)
+    }
 
 	web.SetupRoutes()
 	http.ListenAndServe(":3000", nil)
