@@ -1,60 +1,22 @@
 package web
 
 import (
-	"log"
+	"io"
 	"net/http"
 
-	"github.com/vitorwdson/hercules/templates"
+	"github.com/vitorwdson/hercules/models/user"
 )
 
-type Test struct {
-    Name string
-    Bar int
-}
-
-type ViewData struct {
-    Name string
-    TestList []Test
+func testRoute(w http.ResponseWriter, r *http.Request, user *user.User) {
+	io.WriteString(w, "Accessed")
 }
 
 func SetupRoutes() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-        tmpl, err := templates.GetTemplate("views/index.html")
-        if err != nil {
-            log.Print(err.Error())
-            http.Error(w, "Error loading template", 500)
-        }
-
-        err = tmpl.ExecuteTemplate(w, "base", ViewData {
-            Name: "FooBar",
-            TestList: []Test {
-                {
-                    Name: "Test",
-                    Bar: 5,
-                },
-                {
-                    Name: "Bazz",
-                    Bar: 6,
-                },
-                {
-                    Name: "Fizzz",
-                    Bar: 7,
-                },
-                {
-                    Name: "FoooBar",
-                    Bar: 8,
-                },
-            },
-        })
-        if err != nil {
-            log.Print(err.Error())
-            http.Error(w, "Error executing template", 500)
-        }
-	})
+	http.HandleFunc("/", RequireAuthentication(testRoute))
 
 	http.Handle(
 		"/public/",
 		http.StripPrefix("/public/", http.FileServer(http.Dir("./public"))),
-    )
+	)
 
 }
