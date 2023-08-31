@@ -51,8 +51,8 @@ func (s *Session) Save(db *sql.DB) error {
             SET
                 revoked = $1,
             WHERE
-                id = $4;
-        `, s.Revoked)
+                id = $2;
+        `, s.Revoked, s.ID)
 		if err != nil {
 			return err
 		}
