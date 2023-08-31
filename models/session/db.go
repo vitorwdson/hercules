@@ -4,6 +4,7 @@ import (
 	"database/sql"
 
 	"github.com/google/uuid"
+	"github.com/vitorwdson/hercules/models/user"
 )
 
 func GetByUUID(db *sql.DB, id uuid.UUID) (*Session, error) {
@@ -22,10 +23,11 @@ func GetByUUID(db *sql.DB, id uuid.UUID) (*Session, error) {
             users u
                 ON u.id = s.user_id
         WHERE
-            id = $1;            
+            s.id = $1;            
     `, id)
 
 	session := Session{}
+    session.User = &user.User{}
 	err := row.Scan(
 		&session.ID,
 		&session.CreatedAt,
