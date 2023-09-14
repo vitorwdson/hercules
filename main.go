@@ -2,7 +2,6 @@ package main
 
 import (
 	"flag"
-	"net/http"
 	"os"
 
 	"github.com/joho/godotenv"
@@ -19,14 +18,20 @@ func main() {
 		godotenv.Load()
 	}
 
-	dbConnection := db.GetDB()
+	dbConnection := db.Connect()
 	defer dbConnection.Close()
 
     if *runMigrations {
-        db.RunMigrations()
+        db.RunMigrations(dbConnection)
         os.Exit(0)
     }
 
-	web.SetupRoutes()
-	http.ListenAndServe(":3000", nil)
+    server := web.Server {
+        DB: dbConnection,
+        Port: ":3000",
+        DevMode: *devMode,
+    }
+	server.SetupRoutes()
+    server.ServeStaticFiles()
+    server.StartServer()
 }

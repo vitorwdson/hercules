@@ -4,19 +4,18 @@ import (
 	"io"
 	"net/http"
 
+	"github.com/gorilla/mux"
 	"github.com/vitorwdson/hercules/models/user"
 )
 
-func testRoute(w http.ResponseWriter, r *http.Request, user *user.User) {
+func (s Server) testRoute(w http.ResponseWriter, r *http.Request, user *user.User) {
 	io.WriteString(w, "Accessed")
 }
 
-func SetupRoutes() {
-	http.HandleFunc("/", RequireAuthentication(testRoute))
+func (s *Server) SetupRoutes() {
+	router := mux.NewRouter()
 
-	http.Handle(
-		"/public/",
-		http.StripPrefix("/public/", http.FileServer(http.Dir("./public"))),
-	)
+	router.Handle("/", s.RequireAuthentication(s.testRoute))
 
+	s.Router = router
 }

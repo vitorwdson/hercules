@@ -3,15 +3,11 @@ package db
 import (
 	"database/sql"
 	"os"
-	"sync"
 
 	_ "github.com/lib/pq"
 )
 
-var DB *sql.DB
-var once sync.Once
-
-func connect() {
+func Connect() *sql.DB {
     connectionString := os.Getenv("PG_CONNECTION_STRING")
 	db, err := sql.Open("postgres", connectionString)
 	if err != nil {
@@ -23,12 +19,6 @@ func connect() {
 		panic(err)
 	}
 
-	DB = db
-}
-
-func GetDB() *sql.DB {
-	once.Do(connect)
-
-	return DB
+	return db
 }
 

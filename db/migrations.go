@@ -1,6 +1,7 @@
 package db
 
 import (
+	"database/sql"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -8,9 +9,7 @@ import (
 	"time"
 )
 
-func RunMigrations() {
-	db := GetDB()
-
+func RunMigrations(db *sql.DB) {
 	_, err := db.Exec(`
         CREATE TABLE IF NOT EXISTS migrations (
             id SERIAL PRIMARY KEY,
