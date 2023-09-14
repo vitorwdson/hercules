@@ -21,17 +21,17 @@ func main() {
 	dbConnection := db.Connect()
 	defer dbConnection.Close()
 
-    if *runMigrations {
-        db.RunMigrations(dbConnection)
-        os.Exit(0)
-    }
+	if *runMigrations {
+		db.RunMigrations(dbConnection)
+		os.Exit(0)
+	}
 
-    server := web.Server {
-        DB: dbConnection,
-        Port: ":3000",
-        DevMode: *devMode,
-    }
+	server := web.Server{
+		DB:      dbConnection,
+		Port:    ":3000",
+		DevMode: *devMode,
+	}
 	server.SetupRoutes()
-    server.ServeStaticFiles()
-    server.StartServer()
+	server.ServeStaticFiles()
+	server.StartServer()
 }
