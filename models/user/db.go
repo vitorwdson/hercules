@@ -70,19 +70,34 @@ func (u *User) Save(db *sql.DB) error {
 
 	if u.ID != 0 {
 		// User exists in db, should update
-		_, err := db.Exec(`
-            UPDATE
-                users
-            SET
-                password = $1,
-                name = $2,
-                nickname = $3
-            WHERE
-                id = $4;
-        `, u.password, u.Name, u.Nickname, u.ID)
-		if err != nil {
-			return err
-		}
+        if u.password != "" {
+            _, err := db.Exec(`
+                UPDATE
+                    users
+                SET
+                    password = $1,
+                    name = $2,
+                    nickname = $3
+                WHERE
+                    id = $4;
+            `, u.password, u.Name, u.Nickname, u.ID)
+            if err != nil {
+                return err
+            }
+        } else {
+            _, err := db.Exec(`
+                UPDATE
+                    users
+                SET
+                    name = $1,
+                    nickname = $2
+                WHERE
+                    id = $3;
+            `, u.Name, u.Nickname, u.ID)
+            if err != nil {
+                return err
+            }
+        }
 	} else {
 		// User doesn't exists in db, should insert
 		err := db.QueryRow(`
