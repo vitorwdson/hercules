@@ -1,12 +1,20 @@
 package user
 
-func (u *User) SetPassword(newPassword string) {
-    // TODO: encrypt password before saving
-    u.password = newPassword 
+import "golang.org/x/crypto/bcrypt"
+
+func (u *User) SetPassword(newPassword string) error {
+    hash, err := bcrypt.GenerateFromPassword([]byte(newPassword), bcrypt.DefaultCost)
+    if err != nil {
+        return err
+    }
+
+    u.password = string(hash) 
+
+    return nil
 }
 
 func (u User) ValidatePassword (password string) bool {
-    // TODO: check against encrypted password
-    return password == u.password
+    err := bcrypt.CompareHashAndPassword([]byte(u.password), []byte(password))
+    return err == nil
 }
 
