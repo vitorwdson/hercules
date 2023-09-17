@@ -18,10 +18,7 @@ func (s Server) ServeStaticFiles() {
 		return
 	}
 
-	http.Handle(
-		"/public/",
-		http.StripPrefix("/public/", http.FileServer(http.Dir("./public"))),
-	)
+	s.Router.PathPrefix("/public/").Handler(http.StripPrefix("/public/", http.FileServer(http.Dir("./public"))))
 }
 
 func (s Server) StartServer() {
