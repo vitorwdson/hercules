@@ -67,7 +67,7 @@ func RegisterIndex(w http.ResponseWriter, r *http.Request, db *sql.DB) error {
 		} else if msg := user.CheckPasswordStrength(password1); msg != "" {
 			hasError = true
 			data.Password1Error = msg
-        }
+		}
 
 		if password2 == "" {
 			hasError = true
@@ -77,23 +77,23 @@ func RegisterIndex(w http.ResponseWriter, r *http.Request, db *sql.DB) error {
 			data.Password2Error = "The passwords must match"
 		}
 
-        if !hasError {
-            user := user.User{
-                Username: username,
-                Name: name,
-                Nickname: nickname,
-            }
+		if !hasError {
+			user := user.User{
+				Username: username,
+				Name:     name,
+				Nickname: nickname,
+			}
 
-            err := user.SetPassword(password1)
-            if err != nil {
-                return err
-            }
+			err := user.SetPassword(password1)
+			if err != nil {
+				return err
+			}
 
-            err = user.Save(db)
-            if err != nil {
-                return err
-            }
-        }
+			err = user.Save(db)
+			if err != nil {
+				return err
+			}
+		}
 	}
 
 	return htmx.HxExecuteTemplate(tmpl, w, r, data)
