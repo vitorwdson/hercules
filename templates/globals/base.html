@@ -10,11 +10,14 @@
     <script src="/public/js/htmx.min.js"></script>
 </head>
 
-<body>
+<body
+    hx-target="#main-content"
+    hx-swap="innerHTML"
+>
     <header>
         <h1>Header</h1>
     </header>
-    <main>
+    <main id="main-content">
         {{template "main" .}}
     </main>
     <footer>
