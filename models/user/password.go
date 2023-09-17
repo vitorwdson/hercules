@@ -18,3 +18,6 @@ func (u User) ValidatePassword (password string) bool {
     return err == nil
 }
 
+func CheckPasswordStrength(password string) string {
+    return ""
+}
