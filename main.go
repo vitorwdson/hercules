@@ -5,8 +5,8 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
-	"github.com/vitorwdson/hercules/db"
-	"github.com/vitorwdson/hercules/web"
+	"github.com/vitorwdson/hercules-go/db"
+	"github.com/vitorwdson/hercules-go/web"
 )
 
 func main() {

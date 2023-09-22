@@ -2,7 +2,7 @@ package web
 
 import (
 	"github.com/gorilla/mux"
-	"github.com/vitorwdson/hercules/web/controllers/auth"
+	"github.com/vitorwdson/hercules-go/web/controllers/auth"
 )
 
 func (s *Server) SetupRoutes() {

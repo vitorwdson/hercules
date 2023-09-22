@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/vitorwdson/hercules/models/user"
+	"github.com/vitorwdson/hercules-go/models/user"
 )
 
 type Session struct {

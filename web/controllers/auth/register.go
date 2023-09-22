@@ -4,9 +4,9 @@ import (
 	"database/sql"
 	"net/http"
 
-	"github.com/vitorwdson/hercules/htmx"
-	"github.com/vitorwdson/hercules/models/user"
-	"github.com/vitorwdson/hercules/templates"
+	"github.com/vitorwdson/hercules-go/htmx"
+	"github.com/vitorwdson/hercules-go/models/user"
+	"github.com/vitorwdson/hercules-go/templates"
 )
 
 type IndexTemplateData struct {

@@ -5,8 +5,8 @@ import (
 	"net/http"
 
 	"github.com/google/uuid"
-	"github.com/vitorwdson/hercules/models/session"
-	"github.com/vitorwdson/hercules/models/user"
+	"github.com/vitorwdson/hercules-go/models/session"
+	"github.com/vitorwdson/hercules-go/models/user"
 )
 
 type RouteHandler = func(http.ResponseWriter, *http.Request, *sql.DB) error

@@ -1,4 +1,4 @@
-module github.com/vitorwdson/hercules
+module github.com/vitorwdson/hercules-go
 
 go 1.20
 
